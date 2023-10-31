@@ -74,7 +74,7 @@ export default function Landing() {
             variant={ButtonVariant.LANDING}
             label={"Editar Usuario"}
             onClick={() => {
-              router.push("");
+              router.push("/edit-user");
             }}
           />
           <Button

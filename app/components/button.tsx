@@ -6,6 +6,7 @@ export enum ButtonVariant {
   LANDING = "LANDING",
   IMAGE = "IMAGE",
   FORUM = "FORUM",
+  EDIT_USER = "EDIT_USER",
 }
 
 type CustomButtonProps = {
@@ -25,6 +26,7 @@ const commonVariantClassNames: { [key in ButtonVariant]: string } = {
   [ButtonVariant.LANDING]: `${defaultButtonClassName} text-black shadow-lg`,
   [ButtonVariant.IMAGE]: `${defaultButtonClassName} text-black shadow-lg`,
   [ButtonVariant.FORUM]: `${defaultButtonClassName} text-black shadow-lg`,
+  [ButtonVariant.EDIT_USER]: `${defaultButtonClassName} text-black shadow-lg`,
 };
 
 const variantClassNames: { [key in ButtonVariant]: string } = {
@@ -38,8 +40,11 @@ const variantClassNames: { [key in ButtonVariant]: string } = {
     commonVariantClassNames[ButtonVariant.IMAGE]
   } bg-green-400 hover:bg-green-600`,
   [ButtonVariant.FORUM]: `${
-    commonVariantClassNames[ButtonVariant.IMAGE]
+    commonVariantClassNames[ButtonVariant.FORUM]
   } bg-teal-400 hover:bg-teal-600`,
+  [ButtonVariant.EDIT_USER]: `${
+    commonVariantClassNames[ButtonVariant.EDIT_USER]
+  } bg-fuchsia-400 hover:bg-fuchsia-600`,
 };
 
 export function Button({
