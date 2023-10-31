@@ -40,7 +40,7 @@ export default function Register() {
         <Button
           variant={ButtonVariant.PRIMARY}
           label={"Registrarse"}
-          onClick={async () => {}}
+          onClick={() => {}}
         />
         <Button
           variant={ButtonVariant.PRIMARY}
