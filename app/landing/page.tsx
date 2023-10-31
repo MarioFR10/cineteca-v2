@@ -52,7 +52,7 @@ export default function Landing() {
           <Typography
             typographyVariant={TypographyVariant.OPTION}
             onClick={() => {
-              router.push("");
+              router.push("/forum");
             }}
             className={customStyle}
           >

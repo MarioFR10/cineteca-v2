@@ -39,7 +39,7 @@ export default function Images() {
   }
 
   function goBack() {
-    router.back();
+    router.push("/landing");
   }
 
   useEffect(() => {
@@ -63,7 +63,9 @@ export default function Images() {
           <Button
             variant={ButtonVariant.IMAGE}
             label="Subir foto"
-            onClick={goBack}
+            onClick={() => {
+              router.push("/upload-image");
+            }}
           />
           <Button
             variant={ButtonVariant.IMAGE}
