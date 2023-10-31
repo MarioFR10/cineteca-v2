@@ -5,9 +5,9 @@ import { Typography, TypographyVariant } from "./components/typography";
 import { IconButton, InputAdornment } from "@mui/material";
 import { TextField } from "./components/text-field";
 import { Button, ButtonVariant } from "./components/button";
-import axios from "axios";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
+import axios from "axios";
 
 export default function Login() {
   const apiURL = "http://localhost:8080";
