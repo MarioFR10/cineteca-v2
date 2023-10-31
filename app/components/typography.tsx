@@ -2,6 +2,9 @@ import { tailwind } from "../utils/styles";
 
 export enum TypographyVariant {
   LANDING_TITLE = "LANDING_TITLE",
+  IMAGE_TITLE = "IMAGE_TITLE",
+  FORUM_TITLE = "FORUM_TITLE",
+  EDIT_USER_TITLE = "EDIT_USER_TITLE",
   TITLE = "TITLE",
   BODY = "BODY",
   OPTION = "OPTION",
@@ -21,6 +24,21 @@ const variants: { [key in TypographyVariant]: VariantStyle } = {
     component: "h1",
     className: `${commonStylesClassName} font-semibold text-6xl`,
     colorClassName: "text-orange-950",
+  },
+  [TypographyVariant.IMAGE_TITLE]: {
+    component: "h1",
+    className: `${commonStylesClassName} font-semibold text-6xl`,
+    colorClassName: "text-green-950",
+  },
+  [TypographyVariant.FORUM_TITLE]: {
+    component: "h1",
+    className: `${commonStylesClassName} font-semibold text-6xl`,
+    colorClassName: "text-teal-950",
+  },
+  [TypographyVariant.EDIT_USER_TITLE]: {
+    component: "h1",
+    className: `${commonStylesClassName} font-semibold text-6xl`,
+    colorClassName: "text-fuchsia-950",
   },
   [TypographyVariant.TITLE]: {
     component: "h1",

@@ -34,7 +34,7 @@ export default function Landing() {
           <Typography
             typographyVariant={TypographyVariant.OPTION}
             onClick={() => {
-              router.push("");
+              router.push("/image");
             }}
             className={customStyle}
           >
@@ -52,7 +52,7 @@ export default function Landing() {
           <Typography
             typographyVariant={TypographyVariant.OPTION}
             onClick={() => {
-              router.push("");
+              router.push("/forum");
             }}
             className={customStyle}
           >
@@ -64,7 +64,7 @@ export default function Landing() {
             Bienvenidos a Apreciación de Cine!
           </p>
           <p className="absolute inset-16 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out text-amber-950 text-lg">
-            En este espacio podrán encontrar material didáctivo, información
+            En este espacio podrán encontrar material didáctico, información
             referente al curso, noticias, foros y un espacio para compartir sus
             obras con la comunidad del Tecnológico de Costa Rica.
           </p>
@@ -74,7 +74,7 @@ export default function Landing() {
             variant={ButtonVariant.LANDING}
             label={"Editar Usuario"}
             onClick={() => {
-              router.push("");
+              router.push("/edit-user");
             }}
           />
           <Button

@@ -4,6 +4,9 @@ import { tailwind } from "../utils/styles";
 export enum ButtonVariant {
   PRIMARY = "PRIMARY",
   LANDING = "LANDING",
+  IMAGE = "IMAGE",
+  FORUM = "FORUM",
+  EDIT_USER = "EDIT_USER",
 }
 
 type CustomButtonProps = {
@@ -21,6 +24,9 @@ const defaultButtonClassName =
 const commonVariantClassNames: { [key in ButtonVariant]: string } = {
   [ButtonVariant.PRIMARY]: `${defaultButtonClassName} text-black shadow-lg`,
   [ButtonVariant.LANDING]: `${defaultButtonClassName} text-black shadow-lg`,
+  [ButtonVariant.IMAGE]: `${defaultButtonClassName} text-black shadow-lg`,
+  [ButtonVariant.FORUM]: `${defaultButtonClassName} text-black shadow-lg`,
+  [ButtonVariant.EDIT_USER]: `${defaultButtonClassName} text-black shadow-lg`,
 };
 
 const variantClassNames: { [key in ButtonVariant]: string } = {
@@ -30,6 +36,15 @@ const variantClassNames: { [key in ButtonVariant]: string } = {
   [ButtonVariant.LANDING]: `${
     commonVariantClassNames[ButtonVariant.LANDING]
   } bg-amber-400 hover:bg-amber-600`,
+  [ButtonVariant.IMAGE]: `${
+    commonVariantClassNames[ButtonVariant.IMAGE]
+  } bg-green-400 hover:bg-green-600`,
+  [ButtonVariant.FORUM]: `${
+    commonVariantClassNames[ButtonVariant.FORUM]
+  } bg-teal-400 hover:bg-teal-600`,
+  [ButtonVariant.EDIT_USER]: `${
+    commonVariantClassNames[ButtonVariant.EDIT_USER]
+  } bg-fuchsia-400 hover:bg-fuchsia-600`,
 };
 
 export function Button({
