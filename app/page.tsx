@@ -4,11 +4,13 @@ import { useRouter } from "next/navigation";
 import { Typography, TypographyVariant } from "./components/typography";
 import { IconButton, InputAdornment } from "@mui/material";
 import { TextField } from "./components/text-field";
+import { Button, ButtonVariant } from "./components/button";
+import axios from "axios";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
-import { Button, ButtonVariant } from "./components/button";
 
 export default function Login() {
+  const apiURL = "http://localhost:8080";
   const router = useRouter();
 
   const [username, setUsername] = useState<string>("");
@@ -17,6 +19,21 @@ export default function Login() {
 
   function togglePasswordVisibility() {
     setShowPassword(!showPassword);
+  }
+
+  async function login() {
+    try {
+      const response = await axios.post(`${apiURL}/login`, {
+        username,
+        password,
+      });
+      if (response.data.isRegistered) {
+        router.push("/landing");
+      }
+    } catch (error) {
+      console.log(error);
+      // handle the feedback to the user
+    }
   }
 
   function navToRegister() {
@@ -64,8 +81,8 @@ export default function Login() {
         <Button
           variant={ButtonVariant.PRIMARY}
           label={"Iniciar sesión"}
-          onClick={() => {
-            router.push("/landing");
+          onClick={async () => {
+            await login();
           }}
           className="mt-4"
         />

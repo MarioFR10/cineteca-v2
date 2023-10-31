@@ -4,12 +4,29 @@ import { useRouter } from "next/navigation";
 import { Button, ButtonVariant } from "../components/button";
 import { Typography, TypographyVariant } from "../components/typography";
 import { TextField } from "../components/text-field";
+import axios from "axios";
 
 export default function Register() {
+  const apiURL = "http://localhost:8080";
   const router = useRouter();
 
   const [username, setUsername] = useState<string>("");
   const [password, setPassword] = useState<string>("");
+
+  async function register() {
+    try {
+      const response = await axios.post(`${apiURL}/register`, {
+        username,
+        password,
+      });
+
+      if (response.status === 200) {
+        router.push("/landing");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   function goBack() {
     router.back();
@@ -40,7 +57,9 @@ export default function Register() {
         <Button
           variant={ButtonVariant.PRIMARY}
           label={"Registrarse"}
-          onClick={() => {}}
+          onClick={async () => {
+            await register();
+          }}
         />
         <Button
           variant={ButtonVariant.PRIMARY}
