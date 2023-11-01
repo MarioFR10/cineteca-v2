@@ -6,6 +6,7 @@ import { Typography, TypographyVariant } from "../components/typography";
 import { TextField } from "../components/text-field";
 import { DropInputArea } from "../components/drop-area";
 import { Button, ButtonVariant } from "../components/button";
+import { Loader } from "../components/loader";
 import axios from "axios";
 
 export default function UploadVideo() {
@@ -15,6 +16,7 @@ export default function UploadVideo() {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [title, setTitle] = useState<string>("");
   const [author, setAuthor] = useState<string>("");
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   async function toBase64(file: File) {
     return new Promise((resolve, reject) => {
@@ -36,16 +38,22 @@ export default function UploadVideo() {
       return;
     }
 
-    const base64Video = await toBase64(selectedFile);
-    const response = await axios.post(`${apiURL}/upload-video`, {
-      uuid: uuidv4(),
-      title,
-      author,
-      base64Video,
-    });
+    setIsLoading(true);
+    try {
+      const base64Video = await toBase64(selectedFile);
+      const response = await axios.post(`${apiURL}/upload-video`, {
+        uuid: uuidv4(),
+        title,
+        author,
+        base64Video,
+      });
 
-    if (response.status === 200) {
-      router.push("/video");
+      if (response.status === 200) {
+        router.push("/video");
+      }
+    } catch (error) {
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -63,65 +71,71 @@ export default function UploadVideo() {
 
   return (
     <div className="h-screen w-screen bg-rose-100 p-8">
-      <div className="flex flex-row justify-between bg-rose-300 rounded-xl p-6">
-        <Typography typographyVariant={TypographyVariant.VIDEO_TITLE}>
-          Subir Video
-        </Typography>
-        <div className="flex flex-col space-y-2 items-end">
-          <Button
-            variant={ButtonVariant.VIDEO}
-            label="Volver"
-            onClick={goBack}
-          />
-          <Button
-            variant={ButtonVariant.VIDEO}
-            label="Cerrar Sesión"
-            onClick={() => {
-              router.push("/");
-            }}
-          />
-        </div>
-      </div>
-
-      <div className="flex flex-col space-y-8 w-1/2 mt-10">
-        <div>
-          <Typography typographyVariant={TypographyVariant.BODY}>
-            Titulo
-          </Typography>
-          <TextField initialValue={title} setInputValue={setTitle} />
-        </div>
-
-        <div>
-          <Typography typographyVariant={TypographyVariant.BODY}>
-            Autor
-          </Typography>
-          <TextField initialValue={author} setInputValue={setAuthor} />
-        </div>
-        <div>
-          <Typography typographyVariant={TypographyVariant.BODY}>
-            Video
-          </Typography>
-          <DropInputArea fileSelected={handleFileSelected} />
-          {selectedFile && (
-            <div className="m-4">
-              <Typography typographyVariant={TypographyVariant.BODY}>
-                Archivo seleccionado:
-              </Typography>
-              <Typography typographyVariant={TypographyVariant.BODY}>
-                {selectedFile.name}
-              </Typography>
+      {isLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <div className="flex flex-row justify-between bg-rose-300 rounded-xl p-6">
+            <Typography typographyVariant={TypographyVariant.VIDEO_TITLE}>
+              Subir Video
+            </Typography>
+            <div className="flex flex-col space-y-2 items-end">
+              <Button
+                variant={ButtonVariant.VIDEO}
+                label="Volver"
+                onClick={goBack}
+              />
+              <Button
+                variant={ButtonVariant.VIDEO}
+                label="Cerrar Sesión"
+                onClick={() => {
+                  router.push("/");
+                }}
+              />
             </div>
-          )}
-        </div>
-        <Button
-          variant={ButtonVariant.VIDEO}
-          label={"Subir Video"}
-          onClick={async () => {
-            await uploadVideo();
-          }}
-          className="mt-10"
-        />
-      </div>
+          </div>
+
+          <div className="flex flex-col space-y-8 w-1/2 mt-10">
+            <div>
+              <Typography typographyVariant={TypographyVariant.BODY}>
+                Titulo
+              </Typography>
+              <TextField initialValue={title} setInputValue={setTitle} />
+            </div>
+
+            <div>
+              <Typography typographyVariant={TypographyVariant.BODY}>
+                Autor
+              </Typography>
+              <TextField initialValue={author} setInputValue={setAuthor} />
+            </div>
+            <div>
+              <Typography typographyVariant={TypographyVariant.BODY}>
+                Video
+              </Typography>
+              <DropInputArea fileSelected={handleFileSelected} />
+              {selectedFile && (
+                <div className="m-4">
+                  <Typography typographyVariant={TypographyVariant.BODY}>
+                    Archivo seleccionado:
+                  </Typography>
+                  <Typography typographyVariant={TypographyVariant.BODY}>
+                    {selectedFile.name}
+                  </Typography>
+                </div>
+              )}
+            </div>
+            <Button
+              variant={ButtonVariant.VIDEO}
+              label={"Subir Video"}
+              onClick={async () => {
+                await uploadVideo();
+              }}
+              className="mt-10"
+            />
+          </div>
+        </>
+      )}
     </div>
   );
 }
