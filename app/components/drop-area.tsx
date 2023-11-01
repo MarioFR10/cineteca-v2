@@ -16,9 +16,9 @@ export function DropInputArea({ fileSelected }: Props) {
   };
 
   return (
-    <div className="bg-grey-lighter">
+    <div className="bg-grey-lighter mt-2">
       <label
-        className="w-64 flex flex-col items-center px-4 py-6 rounded-lg shadow-xl tracking-wide uppercase cursor-pointer border border-blue hover:text-blue-400 bg-blue-200"
+        className="w-64 flex flex-col items-center px-4 py-6 rounded-lg shadow-xl tracking-wide uppercase cursor-pointer border border-gray hover:text-gray-400 bg-gray-200"
         htmlFor="fileInput"
       >
         <svg

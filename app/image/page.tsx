@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Typography, TypographyVariant } from "../components/typography";
-import { DisplayBase64Image } from "../components/base-64-image";
+import { Base64Image } from "../components/base-64-image";
 import { Button, ButtonVariant } from "../components/button";
 import axios from "axios";
 
@@ -78,21 +78,21 @@ export default function Images() {
       </div>
 
       {images && Object.entries(images).length !== 0 ? (
-        <div className="flex flex-row justify-between p-10">
+        <div className="grid grid-cols-4 gap-4 justify-center items-center p-10">
           {Object.entries(images).map((entry, index) => {
             return (
               <div className="flex flex-col space-y-4" key={index}>
-                <DisplayBase64Image
+                <Base64Image
                   key={entry[0]}
                   base64String={entry[1].base64Image}
                   height={200}
                   width={200}
                 />
                 <Typography typographyVariant={TypographyVariant.BODY}>
-                  Autor:{entry[1].author}
+                  Autor: {entry[1].author}
                 </Typography>
                 <Typography typographyVariant={TypographyVariant.BODY}>
-                  Título:{entry[1].title}
+                  Título: {entry[1].title}
                 </Typography>
                 <Button
                   variant={ButtonVariant.IMAGE}

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { tailwind } from "../utils/styles";
 
 type Props = {
   height: number;
@@ -7,7 +8,7 @@ type Props = {
   url?: string;
 };
 
-export function DisplayBase64Image({ height, width, base64String }: Props) {
+export function Base64Image({ height, width, base64String, url }: Props) {
   return (
     <div>
       {base64String && (
@@ -16,7 +17,14 @@ export function DisplayBase64Image({ height, width, base64String }: Props) {
           alt="Imagen"
           height={height}
           width={width}
-          className="rounded-xl"
+          className={tailwind("rounded-xl", {
+            "cursor-pointer": url,
+          })}
+          onClick={() => {
+            if (url) {
+              window.open(url, "_blank");
+            }
+          }}
         />
       )}
     </div>

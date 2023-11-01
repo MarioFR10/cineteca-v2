@@ -25,7 +25,7 @@ export default function Landing() {
           <Typography
             typographyVariant={TypographyVariant.OPTION}
             onClick={() => {
-              router.push("");
+              router.push("/video");
             }}
             className={customStyle}
           >
@@ -43,7 +43,7 @@ export default function Landing() {
           <Typography
             typographyVariant={TypographyVariant.OPTION}
             onClick={() => {
-              router.push("");
+              router.push("/material");
             }}
             className={customStyle}
           >
